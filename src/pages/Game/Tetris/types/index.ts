@@ -48,7 +48,7 @@ export interface ICell {
   width: number
   // 高度
   height: number
-  // 速度
+  // 填充
   fill?: string
 }
 

@@ -1,0 +1,50 @@
+.game-snake {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+
+  .control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    height: 25px;
+  }
+
+  .game-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .info {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .score {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

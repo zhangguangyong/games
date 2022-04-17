@@ -1,4 +1,4 @@
-# 站点
+# 游戏
 
 ```
 git remote add origin git@github.com:zhangguangyong/games.git

@@ -11,6 +11,6 @@ package.json
 "deploy": "gh-pages -d build",
 
 yarn add -D gh-pages
-
+yarn add -D @types/react-dom
 yarn deploy
 ```

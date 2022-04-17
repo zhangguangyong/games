@@ -1,6 +1,10 @@
+import {IPosition} from 'pages/Game/types'
+
 export interface IContext {
-  state: IGame,
+  state: IGame
   dispatch: (action: IAction) => void
+  setting: ISetting,
+  setSetting: (grid: ISetting) => void
 }
 
 /**
@@ -23,7 +27,7 @@ export interface IGame {
 /**
  * 二维表格
  */
-export interface IGrid {
+export interface ISetting {
   // 行数
   rows: number
   // 列数
@@ -32,6 +36,16 @@ export interface IGrid {
   height: number
   // 宽度
   width: number
+}
+
+/**
+ * 默认表格参数
+ */
+export const DefaultSetting: ISetting = {
+  rows: 4,
+  cols: 4,
+  width: 107,
+  height: 107
 }
 
 /**
@@ -47,18 +61,6 @@ export interface ICell {
   // 数字
   num?: number
 }
-
-
-/**
- * 位置
- */
-export interface IPosition {
-  // 列
-  x: number
-  // 行
-  y: number
-}
-
 
 /**
  * 动作

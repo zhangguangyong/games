@@ -1,15 +1,15 @@
 import React, {FC, ReactElement, useContext} from 'react'
-import {IGrid} from 'pages/Game/1024/types'
-import {Cell} from 'pages/Game/1024/Cell'
-import {GameContext} from 'pages/Game/1024/contexts'
+import {Cell} from '../Cell'
+import {GameContext} from '../contexts'
 
-export const Grid: FC<IGrid> = (props): ReactElement => {
-  const {rows, cols, height, width} = props
+export const Grid: FC = (): ReactElement => {
+  const {state, setting} = useContext(GameContext)!
+  const {rows, cols, height, width} = setting
+
   const style: React.CSSProperties = {
-    height: rows * height + 50,
-    width: cols * width + 50
+    height: (rows * height + rows * 10 + 10) + 'px',
+    width: (cols * width + cols * 10 + 10) + 'px',
   }
-  let {state} = useContext(GameContext)!
   const render = () => {
     return (
       <div className="grid" style={style}>

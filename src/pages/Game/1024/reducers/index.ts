@@ -1,4 +1,4 @@
-import {ActionType, Direction, IAction, ICell, IGame, IGrid, Status} from 'pages/Game/1024/types'
+import {ActionType, Direction, IAction, ICell, IGame, ISetting, Status} from 'pages/Game/1024/types'
 import {Const, fromPositionKey, getMapKeys, toPositionKey} from 'utils'
 import _ from 'lodash'
 
@@ -316,7 +316,7 @@ export const generate = (game: IGame): ICell => {
  * 重置游戏
  * @param grid
  */
-export const reset = (grid: IGrid): IGame => {
+export const reset = (grid: ISetting): IGame => {
   const {rows, cols} = grid
   const map = new Map<string, any>()
   for (let i = 0; i < rows; i++) {

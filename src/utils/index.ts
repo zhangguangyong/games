@@ -1,4 +1,4 @@
-import {IPosition} from 'components/Game/types'
+import {IPosition} from 'pages/Game/types'
 
 export const Const = {
   EMPTY: ''

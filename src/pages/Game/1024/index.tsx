@@ -1,23 +1,25 @@
 import React, {FC, ReactElement, useEffect, useReducer, useState} from 'react'
-import {ActionType, Direction, IGame, IGrid, Status} from 'pages/Game/1024/types'
+import {ActionType, DefaultSetting, Direction, IGame, Status} from 'pages/Game/1024/types'
 import {gameReducer, reset} from 'pages/Game/1024/reducers'
 import {mapToObject, objectToMap} from 'utils'
 import {isDown, isLeft, isRight, isUp} from 'utils/keyboard'
 import {Grid} from 'pages/Game/1024/Grid'
 import './index.scss'
 import {GameContext} from 'pages/Game/1024/contexts'
+import {Control} from 'pages/Game/1024/Control'
 
-const cacheKey = 'game-1024'
-export const G1024: FC = (): ReactElement => {
-  let [grid, setGrid] = useState<IGrid>({
-    rows: 4,
-    cols: 4,
-    width: 107,
-    height: 107
-  })
+const gameCacheKey = 'game-1024'
+const settingCacheKey = 'game-1024-setting'
+export const Game1024: FC = (): ReactElement => {
+  let settingCache = localStorage.getItem(settingCacheKey)
+  let [setting, setSetting] = useState(settingCache ? JSON.parse(settingCache) : DefaultSetting)
+  useEffect(() => {
+    localStorage.setItem(settingCacheKey, JSON.stringify(setting))
+  }, [setting])
 
+  // 游戏
   const init = (): IGame => {
-    let cache = localStorage.getItem(cacheKey)
+    let cache = localStorage.getItem(gameCacheKey)
     if (cache) {
       let obj = JSON.parse(cache)
       return {
@@ -26,7 +28,7 @@ export const G1024: FC = (): ReactElement => {
         previousMap: objectToMap(obj.previousMap)
       }
     }
-    return reset(grid)
+    return reset(setting)
 
   }
 
@@ -41,14 +43,15 @@ export const G1024: FC = (): ReactElement => {
   useEffect(() => {
     if (state.map) {
       if (state.status === Status.END) {
-        localStorage.removeItem(cacheKey)
+        localStorage.removeItem(gameCacheKey)
       } else {
         let copy = {...state, map: mapToObject(state.map), previousMap: mapToObject(state.previousMap)}
-        localStorage.setItem(cacheKey, JSON.stringify(copy))
+        localStorage.setItem(gameCacheKey, JSON.stringify(copy))
       }
     }
   }, [state])
 
+  // 按键
   const handleKeyDown = (e: any) => {
     if (isUp(e)) {
       dispatch({type: ActionType.MOVE, payload: Direction.UP})
@@ -68,24 +71,11 @@ export const G1024: FC = (): ReactElement => {
     }
   }
 
-  const handleRestart = () => {
-    dispatch({type: ActionType.RESET, payload: reset(grid)})
-  }
-
-
   return (
-    <GameContext.Provider value={{state, dispatch}}>
+    <GameContext.Provider value={{state, dispatch, setting, setSetting}}>
       <div className="game-1024" tabIndex={0} onKeyDown={handleKeyDown}>
-        <div className="control">
-          <button onClick={() => handleRestart()}>重新开始</button>
-        </div>
-
-        <Grid {...grid}/>
-
-        <div className="info">
-          {state.status === Status.END ? <span style={{color: 'red'}}>游戏结束</span> :
-            <span style={{color: 'green'}}>游戏正常</span>}
-        </div>
+        <Control/>
+        <Grid {...setting}/>
       </div>
     </GameContext.Provider>
   )

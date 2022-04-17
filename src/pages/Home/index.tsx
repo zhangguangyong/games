@@ -7,7 +7,7 @@ export const Home: FC = (): ReactElement => {
   let navigate = useNavigate()
 
   const handleChange = (e: any) => {
-    navigate('/home/game/' + e.target.value)
+    navigate('/' + e.target.value)
   }
 
   return (
@@ -23,7 +23,6 @@ export const Home: FC = (): ReactElement => {
       <div className={'content'}>
         <Outlet/>
       </div>
-
     </div>
   )
 }

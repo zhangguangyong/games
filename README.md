@@ -7,10 +7,10 @@ git push -u origin main
 
 package.json
 "homepage":"https://zhangguangyong.github.io/games"
-"predeploy": "npm run build",
+"predeploy": "yarn build",
 "deploy": "gh-pages -d build",
 
-npm install --save-dev gh-pages
+yarn add -D gh-pages
 
-npm run deploy
+yarn deploy
 ```

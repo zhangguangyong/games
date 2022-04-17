@@ -1,0 +1,79 @@
+.game-tetris {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  //align-items: center;
+  border: 0;
+
+  .control {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 13px;
+
+    .ant-input-number {
+      width: calc(100% - 50px);
+      margin-left: 5px;
+    }
+
+    > div {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-left: 30px;
+
+      .num {
+        font-size: 16px;
+        font-weight: bold;
+        color: red;
+        margin-left: 5px;
+      }
+    }
+
+    > div:nth-child(1) ~ div {
+      margin-top: 20%;
+    }
+
+    .next {
+      .grid {
+        background-color: white;
+
+        .cell {
+          border: 0
+        }
+      }
+    }
+  }
+
+  .grid {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > div {
+        //border-style: solid;
+        //border-width: 1px 0 0 1px;
+      }
+
+      :nth-last-child(1) {
+        //border-right-width: 1px;
+      }
+    }
+
+    .row:nth-last-child(1) {
+      > div {
+        //border-bottom-width: 1px;
+      }
+    }
+  }
+}

@@ -50,7 +50,9 @@ export const Control: FC = (): ReactElement => {
     <div className="control">
       <Space>
         <Button type="primary" size={size} onClick={() => handleRestart()}
-                danger={state.status === Status.END}>重新开始</Button>
+                danger={state.status === Status.END}>
+          {state.status === Status.END ? '重来' : '开始'}
+        </Button>
         <Button type="primary" size={size} onClick={() => handleSetting('+')} icon={<PlusCircleOutlined/>}/>
         <Button type="primary" size={size} onClick={() => handleSetting('-')} icon={<MinusCircleOutlined/>}/>
         <Button type="primary" size={size} onClick={() => handleSetting('放')} icon={<FullscreenOutlined/>}/>

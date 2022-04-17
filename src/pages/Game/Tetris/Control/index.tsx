@@ -51,7 +51,7 @@ export const Control: FC = (): ReactElement => {
     <div className="control" style={{height: rows * height}}>
       <div>
         <Button type="primary" size="small" danger={status === Status.END} onClick={handleAction}>
-          {status === Status.PREPARE ? '开始游戏' : status === Status.END ? '重新开始' : status === Status.START ? '暂停' : '启动'}
+          {status === Status.PREPARE ? '开始' : status === Status.END ? '重来' : status === Status.START ? '暂停' : '启动'}
         </Button>
       </div>
       <div>

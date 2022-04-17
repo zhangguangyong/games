@@ -8,7 +8,7 @@ import {GameTetris} from 'pages/Game/Tetris'
 import {Game1024} from 'pages/Game/1024'
 
 const App: FC = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={'/games'}>
     <div className="App">
       <Routes>
         <Route path="/" element={<Layout/>}>
